@@ -10,13 +10,22 @@ const StatsMain = styled.section`
 class InputStats extends React.Component {
   state = {
       userData: [],
-      value: ''
+      platform: '',
+      username: ''
   };
 
   handleChange = (e) => {
+      console.log(e.target.value)
     this.setState({
-        value: e.target.value
+        username: e.target.value
     });
+  }
+
+  handleRadioChange = (e) => {
+      this.setState({
+          platform: e.target.value
+      })
+      console.log(this.state.platform)
   }
 
   handleSubmit = (e) => {
@@ -29,7 +38,7 @@ class InputStats extends React.Component {
   }
 
   render() {
-      console.log(this.state.value)
+      console.log(this.state.platform)
     return (
       <StatsMain>
         <Header
@@ -38,9 +47,15 @@ class InputStats extends React.Component {
         />
 
         <form onSubmit={this.handleSubmit}>
+            <label onChange={this.handleRadioChange}>
+                Platform: 
+                <input type="radio" value="ps4" name="platform"/>Playstation 4
+                <input type="radio" value="xbox" name="platform"/>Xbox
+                <input type="radio" value="pc" name="platform"/>PC
+            </label>
             <label>
                 Username:
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
+                <input type="text" value={this.state.username} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
         </form>
