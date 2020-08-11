@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 const HeaderContainer = styled.div`
   padding: 2rem 0 1rem;
+  width: 80vw;
+  margin: 0 auto;
 `;
 
 const Header = ({ title, subtitle }) => {

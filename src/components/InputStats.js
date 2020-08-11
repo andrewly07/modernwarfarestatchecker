@@ -1,65 +1,160 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
-import axios from 'axios'
+import axios from "axios";
 
 const StatsMain = styled.section`
-    padding-bottom: 4rem;
+  padding-bottom: 4rem;
+  width: 80vw;
+  margin: 0 auto;
 `;
+
+const FormMain = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  div {
+    margin: 0.5rem 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+
+  div input:hover {
+    cursor: pointer
+  }
+`;
+
+const RadioButton = styled.input`
+    height: 20px;
+    width: 20px;
+    margin: auto .5rem;
+`
+
+const UserTextInput = styled.input`
+    padding: .2rem 1rem;
+`;
+
+const UserLabel = styled.label`
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+        margin: 0.5rem 0;
+    }
+
+    input {
+        width: 100%;
+        letter-spacing: 1px;
+        margin: 0.5rem 0 1rem;
+    }
+`
+
+const TitleSpan = styled.span`
+    font-weight: 700;
+    position: relative;
+
+    ::after {
+        content: '';
+        display: block;
+        height: 2px;
+        background-color: #b70000;
+        position: relative;
+        width: 10%;
+        margin: 1rem auto;
+    }
+`
 
 class InputStats extends React.Component {
   state = {
-      userData: [],
-      platform: '',
-      username: ''
+    userData: [],
+    platform: "",
+    username: "",
   };
 
   handleChange = (e) => {
-      console.log(e.target.value)
     this.setState({
-        username: e.target.value
+      username: e.target.value,
     });
-  }
+  };
 
   handleRadioChange = (e) => {
-      this.setState({
-          platform: e.target.value
-      })
-      console.log(this.state.platform)
-  }
+    this.setState({
+      platform: e.target.value,
+    });
+  };
 
   handleSubmit = (e) => {
-      console.log('form submitted')
+    this.getUserData();
     e.preventDefault();
-  }
+  };
 
-  getUserData = () => {
+  async getUserData() {
+    let name = this.state.username;
+    let plat = this.state.platform;
 
+    let url = `"https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/${name}/${plat}"`;
+    const headers = {
+      "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com",
+      "x-rapidapi-key": "f20ce8e6b3mshe7fb7b3898a80a0p17c547jsncc06a03797e7",
+    };
+
+    // await axios
+    //   .get(url, {
+    //     headers: headers,
+    //   })
+    //   .then((response) => {
+    //     console.log("response", response.data.lifetime);
+    //     this.setState({
+    //       userData: response.data.lifetime,
+    //     });
+    //   });
   }
 
   render() {
-      console.log(this.state.platform)
     return (
       <StatsMain>
         <Header
           title="Check Your Stats"
-          subtitle="Fill in your info and let's see what you've got."
+          subtitle="Let's see what you've got!"
         />
 
-        <form onSubmit={this.handleSubmit}>
-            <label onChange={this.handleRadioChange}>
-                Platform: 
-                <input type="radio" value="ps4" name="platform"/>Playstation 4
-                <input type="radio" value="xbox" name="platform"/>Xbox
-                <input type="radio" value="pc" name="platform"/>PC
-            </label>
-            <label>
-                Username:
-                <input type="text" value={this.state.username} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-        </form>
-
+        <FormMain onSubmit={this.handleSubmit}>
+          <label onChange={this.handleRadioChange}>
+            <TitleSpan>Platform</TitleSpan>
+            <div>
+              <RadioButton type="radio" value="psn" name="platform" />
+              <span>Playstation 4</span>
+            </div>
+            <div>
+              <RadioButton type="radio" value="xbl" name="platform" />
+              <span>Xbox</span>
+            </div>
+            <div>
+              <RadioButton type="radio" value="battle" name="platform" />
+              <span>PC</span>
+            </div>
+            <div>
+              <RadioButton type="radio" value="steam" name="platform" />
+              <span>Steam</span>
+            </div>
+          </label>
+          <UserLabel>
+              <TitleSpan>Username</TitleSpan>
+              <span>(NOT gamertag ID | Case sensitivity matters)</span>
+            <UserTextInput
+              type="text"
+              placeholder="platform username"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </UserLabel>
+          <input type="submit" value="Submit" />
+        </FormMain>
       </StatsMain>
     );
   }

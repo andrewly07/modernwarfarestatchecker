@@ -9,7 +9,11 @@ const HeroMain = styled.section`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
+  background-attachment: fixed;
   margin-top: 4rem;
+    @media (max-width: 767px) {
+        background-attachment: scroll;
+    }
 `;
 
 const Hero = () => {
