@@ -6,7 +6,7 @@ import Stats from "./Stats";
 
 const StatsMain = styled.section`
   padding-bottom: 4rem;
-  width: 80vw;
+  width: 100vw;
   margin: 0 auto;
 `;
 
@@ -25,6 +25,13 @@ const FormMain = styled.form`
 
   div input:hover {
     cursor: pointer;
+  }
+
+  span {
+    color: #fff;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
   }
 `;
 

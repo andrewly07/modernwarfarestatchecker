@@ -18,6 +18,16 @@ const FooterMain = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  :before {
+    content: '';
+    height: 1px;
+    background-color: #fbfcd1;
+    position: relative;
+    width: 80%;
+    margin-bottom: 3rem;
+  }
 `;
 
 const FooterFlex = styled.div`
