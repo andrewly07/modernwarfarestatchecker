@@ -13,7 +13,7 @@ const Nav = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  background: black;
+  background: #1b1b1b;
   z-index: 1;
   color: white;
 `;

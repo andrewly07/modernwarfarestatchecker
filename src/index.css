@@ -1,20 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap");
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: .15rem;
+  letter-spacing: 0.15rem;
   background-color: black;
   color: white;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 p {
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
+}
+
+.btn-primary {
+  padding: 12px 20px;
+  font-size: 1rem;
+  outline: none;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 0px #97cde1;
+  background-color: #242424;
+  color: #94bbc2;
+  box-shadow: inset 0px 0px 5px #597985;
+  border: 1px solid #597985;
+  letter-spacing: 3px;
+  position: relative;
+  text-align: center;
+  transition: all .4s ease-in-out;
+}
+
+.btn-primary:hover {
+  cursor: pointer;
+  color: #79d9ff;
+  text-shadow: 0px 0px 3px #97cde1;
+  border: 1px solid #79d9ff;
+  box-shadow: inset 0px 0px 7px #79d9ff;
+}
+
+.btn-primary:focus, textarea:focus, input:focus {
+  outline: none;
+}
+
+.fa-user-right {
+  padding-left: 1rem;
 }

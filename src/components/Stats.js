@@ -7,10 +7,49 @@ import sq2 from "../assets/images/bg/square2.jpg";
 import sq3 from "../assets/images/bg/square3.jpg";
 import sq4 from "../assets/images/bg/square4.jpg";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlaystation,
+  faXbox,
+  faSteam,
+} from "@fortawesome/free-brands-svg-icons";
+import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+
 const StatsMain = styled.section`
   padding-bottom: 4rem;
-  /* width: 80vw; */
   margin: 0 auto;
+`;
+
+const UsernameHeader = styled.h1`
+  padding-top: 2rem;
+  font-size: 2.5rem;
+`
+
+const StatsErrorMain = styled.section`
+  padding: 4rem 0 2rem;
+  margin: 0 auto;
+  width: 80vw;
+
+  h1 {
+    color: #fff;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    ::after {
+      content: "";
+      display: block;
+      height: 2px;
+      background-color: #d0a137;
+      position: relative;
+      width: 10%;
+      margin: 2rem auto;
+    }
+  }
+
+  p {
+    padding-top: 1rem;
+  }
 `;
 
 const StatsFlexWrap = styled.div`
@@ -20,14 +59,14 @@ const StatsFlexWrap = styled.div`
   position: relative;
 
   :after {
-    content: '';
+    content: "";
     position: relative;
     background: #fbfcd1;
     height: 1px;
     width: 75%;
     margin: 0 auto;
     margin-top: 4rem;
-    opacity: 0.4
+    opacity: 0.4;
   }
 `;
 
@@ -57,7 +96,12 @@ const StatsThird = styled.div`
     width: 100%;
     top: 0;
     background: rgb(1, 28, 45);
-    background: linear-gradient( 0deg, rgba(0, 0, 0, 0.8) 0%, rgba(29, 12, 28, 0.8) 100% );
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(29, 12, 28, 0.9) 50%,
+      rgba(0, 0, 0, 1) 100%
+    );
     z-index: 1;
   }
 
@@ -74,136 +118,239 @@ const StatsThird = styled.div`
   }
 `;
 
-const Stats = ({ userStats, username }) => {
-  console.log("users stats", userStats);
-  const {
-    avengerKills,
-    c4Kills,
-    carepackagesCaptured,
-    comebackKills,
-    deadSilenceKills,
-    deathsFromBehind,
-    destroyedKillstreaks,
-    fragKills,
-    hipfireKills,
-    killstreakAirKills,
-    launcherKills,
-    launcherDeaths,
-    lmgDeaths,
-    lmgKills,
-    longshotKills,
-    meleeDeaths,
-    molotovKills,
-    pistolKills,
-    pistolPeaths,
-    semtexKills,
-    shotgunDeaths,
-    shotgunKills,
-  } = userStats.accoladeData.properties;
+const Stats = ({ userStats, username, platform }) => {
+  console.log("userstats", platform);
+  if (userStats.all.properties === null) {
+    return (
+      <StatsErrorMain>
+        <h1>No Stats Available</h1>
+        <p>
+          You have an account for this platform but have not yet played the
+          game. Try choosing a different platform.
+        </p>
+      </StatsErrorMain>
+    );
+  } else {
+    const {
+      avengerKills,
+      c4Kills,
+      carepackagesCaptured,
+      comebackKills,
+      deadSilenceKills,
+      deathsFromBehind,
+      destroyedKillstreaks,
+      fragKills,
+      hipfireKills,
+      killstreakAirKills,
+      launcherKills,
+      launcherDeaths,
+      lmgDeaths,
+      lmgKills,
+      longshotKills,
+      meleeDeaths,
+      molotovKills,
+      pistolKills,
+      pistolPeaths,
+      semtexKills,
+      shotgunDeaths,
+      shotgunKills,
+    } = userStats.accoladeData.properties;
 
-  const {
-    accuracy,
-    assists,
-    bestCaptures,
-    bestConfirmed,
-    bestDeaths,
-    bestDefuses,
-    bestDefends,
-    bestKD,
-    bestKillStreak,
-    bestKills,
-    bestPlants,
-    bestRescues,
-    bestScore,
-    currentWinStreak,
-    deaths,
-    headshots,
-    kdRatio,
-    kills,
-    losses,
-    misses,
-    recordLongestWinStreak,
-    score,
-    suicides,
-    ties,
-    timePlayedTotal,
-    totalGamesPlayed,
-    totalShots,
-    winLossRatio,
-    wins,
-  } = userStats.all.properties;
+    const {
+      accuracy,
+      assists,
+      bestCaptures,
+      bestConfirmed,
+      bestDeaths,
+      bestDefuses,
+      bestDefends,
+      bestKD,
+      bestKillStreak,
+      bestKills,
+      bestPlants,
+      bestRescues,
+      bestScore,
+      currentWinStreak,
+      deaths,
+      headshots,
+      kdRatio,
+      kills,
+      losses,
+      misses,
+      recordLongestWinStreak,
+      score,
+      suicides,
+      ties,
+      timePlayedTotal,
+      totalGamesPlayed,
+      totalShots,
+      winLossRatio,
+      wins,
+    } = userStats.all.properties;
 
-  return (
-    <StatsMain>
-      <Header title={username} subtitle="Multiplayer Stats" />
-      <StatsFlexWrap>
-        <StatsThird img={sq1}>
-          <p><span>wins:</span> {wins}</p>
-          <p><span>Losses:</span> {losses}</p>
-          <p><span>Overall K/D Ratio:</span> {kdRatio}</p>
-          <p><span>Overall Kills:</span> {kills}</p>
-          <p><span>Total Deaths:</span> {deaths}</p>
-          <p><span>Total Games Played:</span> {totalGamesPlayed}</p>
-          <p><span>Win/Loss Ratio:</span> {winLossRatio}</p>
-          <p><span>Total Score:</span> {score}</p>
-          <p><span>Total Ties:</span> {ties}</p>
-        </StatsThird>
-        <StatsThird img={sq2}>
-          <p><span>Longest Win Streak:</span> {recordLongestWinStreak}</p>
-          <p><span>Current Win Streak:</span> {currentWinStreak}</p>
-          <p><span>Total Time Played:</span> {timePlayedTotal} minutes</p>
-          <p><span>Total Shots:</span> {totalShots}</p>
-          <p><span>Total Shots Missed:</span> {misses}</p>
-          <p><span>Total Headshots:</span> {headshots}</p>
-          <p><span>Suicides:</span> {suicides}</p>
-          <p><span>Accuracy:</span> {accuracy}</p>
-          <p><span>Total Assists:</span> {assists}</p>
-        </StatsThird>
-      </StatsFlexWrap>
-      <StatsIndividualMain>
-        <h4>Individual Game Stats</h4>
+    return (
+      <StatsMain>
+        <UsernameHeader>
+          {username}
+          {platform === 'psn' && <FontAwesomeIcon icon={faPlaystation} className="fa-user-right"/>}
+          {platform === 'xbl' && <FontAwesomeIcon icon={faXbox} className="fa-user-right"/>}
+          {platform === 'battle' && <FontAwesomeIcon icon={faDesktop} className="fa-user-right"/>}
+          {platform === 'steam' && <FontAwesomeIcon icon={faSteam} className="fa-user-right"/>}
+        </UsernameHeader>
+        <h4>Lifetime Multiplayer Stats</h4>
         <StatsFlexWrap>
-          <StatsThird img={sq3}>
-            <p><span>Most Kills:</span> {bestKills}</p>
-            <p><span>Highest Killstreak:</span> {bestKillStreak}</p>
-            <p><span>Best K/D Ratio:</span> {bestKD}</p>
-            <p><span>Most Deaths:</span> {bestDeaths}</p>
-            <p><span>Most Defends:</span> {bestDefends}</p>
-            <p><span>Most Defuses:</span> {bestDefuses}</p>
+          <StatsThird img={sq1}>
+            <p>
+              <span>wins:</span> {wins}
+            </p>
+            <p>
+              <span>Losses:</span> {losses}
+            </p>
+            <p>
+              <span>Overall K/D Ratio:</span> {kdRatio}
+            </p>
+            <p>
+              <span>Overall Kills:</span> {kills}
+            </p>
+            <p>
+              <span>Total Deaths:</span> {deaths}
+            </p>
+            <p>
+              <span>Total Games Played:</span> {totalGamesPlayed}
+            </p>
+            <p>
+              <span>Win/Loss Ratio:</span> {winLossRatio}
+            </p>
+            <p>
+              <span>Total Score:</span> {score}
+            </p>
+            <p>
+              <span>Total Ties:</span> {ties}
+            </p>
           </StatsThird>
-          <StatsThird img={sq4}>
-            <p><span>Best Score:</span> {bestScore}</p>
-            <p><span>Win/Loss Ratio:</span> {winLossRatio}</p>
-            <p><span>Most Plants:</span> {bestPlants}</p>
-            <p><span>Most Rescues:</span> {bestRescues}</p>
-            <p><span>Most Captures:</span> {bestCaptures}</p>
-            <p><span>Most Confirms:</span> {bestConfirmed}</p>
+          <StatsThird img={sq2}>
+            <p>
+              <span>Longest Win Streak:</span> {recordLongestWinStreak}
+            </p>
+            <p>
+              <span>Current Win Streak:</span> {currentWinStreak}
+            </p>
+            <p>
+              <span>Total Time Played:</span> {timePlayedTotal} minutes
+            </p>
+            <p>
+              <span>Total Shots:</span> {totalShots}
+            </p>
+            <p>
+              <span>Total Shots Missed:</span> {misses}
+            </p>
+            <p>
+              <span>Total Headshots:</span> {headshots}
+            </p>
+            <p>
+              <span>Suicides:</span> {suicides}
+            </p>
+            <p>
+              <span>Accuracy:</span> {accuracy}
+            </p>
+            <p>
+              <span>Total Assists:</span> {assists}
+            </p>
           </StatsThird>
         </StatsFlexWrap>
-      </StatsIndividualMain>
-      <StatsRandomMain>
-        <h4>Individual Game Stats</h4>
-        <StatsFlexWrap>
-          <StatsThird img={"../assets/images/bg/square1.jpg"}>
-            <p><span>Most Kills:</span> {bestKills}</p>
-            <p><span>Highest Killstreak:</span> {bestKillStreak}</p>
-            <p><span>Best K/D Ratio:</span> {bestKD}</p>
-            <p><span>Most Deaths:</span> {bestDeaths}</p>
-            <p><span>Most Defends:</span> {bestDefends}</p>
-            <p><span>Most Defuses:</span> {bestDefuses}</p>
-          </StatsThird>
-          <StatsThird img={"../assets/images/bg/square1.jpg"}>
-            <p><span>Best Score:</span> {bestScore}</p>
-            <p><span>Win/Loss Ratio:</span> {winLossRatio}</p>
-            <p><span>Most Plants:</span> {bestPlants}</p>
-            <p><span>Most Rescues:</span> {bestRescues}</p>
-            <p><span>Most Captures:</span> {bestCaptures}</p>
-            <p><span>Most Confirms:</span> {bestConfirmed}</p>
-          </StatsThird>
-        </StatsFlexWrap>
-      </StatsRandomMain>
-    </StatsMain>
-  );
+        <StatsIndividualMain>
+          <h4>Individual Game Stats</h4>
+          <StatsFlexWrap>
+            <StatsThird img={sq3}>
+              <p>
+                <span>Most Kills:</span> {bestKills}
+              </p>
+              <p>
+                <span>Highest Killstreak:</span> {bestKillStreak}
+              </p>
+              <p>
+                <span>Best K/D Ratio:</span> {bestKD}
+              </p>
+              <p>
+                <span>Most Deaths:</span> {bestDeaths}
+              </p>
+              <p>
+                <span>Most Defends:</span> {bestDefends}
+              </p>
+              <p>
+                <span>Most Defuses:</span> {bestDefuses}
+              </p>
+            </StatsThird>
+            <StatsThird img={sq4}>
+              <p>
+                <span>Best Score:</span> {bestScore}
+              </p>
+              <p>
+                <span>Win/Loss Ratio:</span> {winLossRatio}
+              </p>
+              <p>
+                <span>Most Plants:</span> {bestPlants}
+              </p>
+              <p>
+                <span>Most Rescues:</span> {bestRescues}
+              </p>
+              <p>
+                <span>Most Captures:</span> {bestCaptures}
+              </p>
+              <p>
+                <span>Most Confirms:</span> {bestConfirmed}
+              </p>
+            </StatsThird>
+          </StatsFlexWrap>
+        </StatsIndividualMain>
+        <StatsRandomMain>
+          <h4>Individual Game Stats</h4>
+          <StatsFlexWrap>
+            <StatsThird>
+              <p>
+                <span>Most Kills:</span> {bestKills}
+              </p>
+              <p>
+                <span>Highest Killstreak:</span> {bestKillStreak}
+              </p>
+              <p>
+                <span>Best K/D Ratio:</span> {bestKD}
+              </p>
+              <p>
+                <span>Most Deaths:</span> {bestDeaths}
+              </p>
+              <p>
+                <span>Most Defends:</span> {bestDefends}
+              </p>
+              <p>
+                <span>Most Defuses:</span> {bestDefuses}
+              </p>
+            </StatsThird>
+            <StatsThird>
+              <p>
+                <span>Best Score:</span> {bestScore}
+              </p>
+              <p>
+                <span>Win/Loss Ratio:</span> {winLossRatio}
+              </p>
+              <p>
+                <span>Most Plants:</span> {bestPlants}
+              </p>
+              <p>
+                <span>Most Rescues:</span> {bestRescues}
+              </p>
+              <p>
+                <span>Most Captures:</span> {bestCaptures}
+              </p>
+              <p>
+                <span>Most Confirms:</span> {bestConfirmed}
+              </p>
+            </StatsThird>
+          </StatsFlexWrap>
+        </StatsRandomMain>
+      </StatsMain>
+    );
+  }
 };
 
 export default Stats;

@@ -21,12 +21,13 @@ const FooterMain = styled.footer`
   position: relative;
 
   :before {
-    content: '';
-    height: 1px;
-    background-color: #fbfcd1;
-    position: relative;
-    width: 80%;
     margin-bottom: 3rem;
+    content: "";
+    height: 2px;
+    width: 100%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #d0a137 20%, #d0a137 80%, rgba(0, 0, 0, 0));
+    display: block;
+    margin-top: 0;
   }
 `;
 
@@ -78,7 +79,7 @@ const CopyrightText = styled.p`
   font-size: .85rem;
   color: #c7c7c7;
   width: 80vw;
-`
+`;
 
 const Footer = () => {
   return (
@@ -89,7 +90,7 @@ const Footer = () => {
             <img src={logo} alt="call of duty modern warfare logo" />
           </Link>
           <p>
-            Quickly check your stats for Call of Duty: Modern Warfare. Built with React.
+            Quickly check your stats for Call of Duty: Modern Warfare.
           </p>
         </DescriptionContainer>
         <LinksContainer>
