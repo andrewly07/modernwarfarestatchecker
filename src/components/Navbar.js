@@ -10,11 +10,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const Nav = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   background: #1b1b1b;
-  z-index: 1;
+  z-index: 100;
   color: white;
 `;
 
@@ -24,6 +24,9 @@ const NavCenter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 768px) {
+    max-width: 95vw;
+  }
 `;
 
 const NavHeader = styled.div`
@@ -34,6 +37,9 @@ const NavHeader = styled.div`
 
   img {
     width: 200px;
+    @media (max-width: 500px) {
+      width: 125px;
+    }
   }
 `;
 
@@ -54,12 +60,18 @@ const NavLinks = styled.ul`
     padding: 0 1rem;
     font-weight: bold;
     text-transform: uppercase;
+    @media (max-width: 500px) {
+      font-size: .5rem;
+    }
   }
 `;
 
 const SocialLinks = styled.div`
   display: flex;
   line-height: 0;
+  @media (max-width: 500px) {
+    display: none;
+  }
 
   a {
     color: white;

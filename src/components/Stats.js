@@ -304,46 +304,73 @@ const Stats = ({ userStats, username, platform }) => {
           </StatsFlexWrap>
         </StatsIndividualMain>
         <StatsRandomMain>
-          <h4>Individual Game Stats</h4>
+          <h4>Weapons / Lethal Stats</h4>
           <StatsFlexWrap>
             <StatsThird>
               <p>
-                <span>Most Kills:</span> {bestKills}
+                <span>Avenger Kills:</span> {avengerKills}
               </p>
               <p>
-                <span>Highest Killstreak:</span> {bestKillStreak}
+                <span>C4 Kills:</span> {c4Kills}
               </p>
               <p>
-                <span>Best K/D Ratio:</span> {bestKD}
+                <span>Care Packages Captured:</span> {carepackagesCaptured}
               </p>
               <p>
-                <span>Most Deaths:</span> {bestDeaths}
+                <span>Dead Silence Kills:</span> {deadSilenceKills}
               </p>
               <p>
-                <span>Most Defends:</span> {bestDefends}
+                <span>Deaths From Behind:</span> {deathsFromBehind}
               </p>
               <p>
-                <span>Most Defuses:</span> {bestDefuses}
+                <span>Destroyed Killstreaks:</span> {destroyedKillstreaks}
+              </p>
+              <p>
+                <span>Longshot Kills:</span> {longshotKills}
+              </p>
+              <p>
+                <span>Semtex Kills:</span> {semtexKills}
+              </p>
+              <p>
+                <span>Shotgun Kills:</span> {shotgunKills}
+              </p>
+              <p>
+                <span>Shotgun Deaths:</span> {shotgunDeaths}
               </p>
             </StatsThird>
             <StatsThird>
               <p>
-                <span>Best Score:</span> {bestScore}
+                <span>Frag Kills:</span> {fragKills}
               </p>
               <p>
-                <span>Win/Loss Ratio:</span> {winLossRatio}
+                <span>Hip Fire Kills:</span> {hipfireKills}
               </p>
               <p>
-                <span>Most Plants:</span> {bestPlants}
+                <span>Air Killstreak Kills:</span> {killstreakAirKills}
               </p>
               <p>
-                <span>Most Rescues:</span> {bestRescues}
+                <span>Launcher Kills:</span> {launcherKills}
               </p>
               <p>
-                <span>Most Captures:</span> {bestCaptures}
+                <span>Launcher Deaths:</span> {launcherDeaths}
               </p>
               <p>
-                <span>Most Confirms:</span> {bestConfirmed}
+                <span>LMG Kills:</span> {lmgKills}
+              </p>
+              <p>
+                <span>LMG Deaths:</span> {lmgDeaths}
+              </p>
+              <p>
+                <span>Melee Deaths:</span> {meleeDeaths}
+              </p>
+              <p>
+                <span>Molotov Kills:</span> {molotovKills}
+              </p>
+              <p>
+                <span>Pistol Kills:</span> {pistolKills}
+              </p>
+              <p>
+                <span>Pistol Deaths:</span> {pistolPeaths}
               </p>
             </StatsThird>
           </StatsFlexWrap>

@@ -10,7 +10,7 @@ import {
   faXbox,
   faSteam,
 } from "@fortawesome/free-brands-svg-icons";
-import { faDesktop } from "@fortawesome/free-solid-svg-icons"
+import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 
 const StatsMain = styled.section`
   padding-bottom: 4rem;
@@ -46,6 +46,7 @@ const FormMain = styled.form`
     text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
     letter-spacing: 3px;
     text-transform: uppercase;
+    font-size: 1.2rem;
   }
 `;
 
@@ -96,6 +97,11 @@ const TitleSpan = styled.span`
   }
 `;
 
+const ErrorText = styled.p`
+  color: red;
+  font-size: 0.85rem;
+`;
+
 class InputStats extends React.Component {
   state = {
     success: null,
@@ -121,20 +127,29 @@ class InputStats extends React.Component {
   };
 
   handleSubmit = (e) => {
-    if (this.state.platform === "") {
+    if ((this.state.platform === "") & (this.state.username === "")) {
       console.log("platform needs to be selected");
       this.setState({
         errors: {
           platform: true,
+          username: true,
         },
       });
+      e.preventDefault();
     } else if (this.state.username === "") {
       console.log("username needs to be selected");
       this.setState({
         errors: { username: true },
       });
+      e.preventDefault();
+    } else if (this.state.platform === "") {
+      this.setState({
+        errors: { platform: true },
+      });
+    } else if (this.state.platform !== "" && this.state.username !== "") {
+      this.getUserData();
     }
-    this.getUserData();
+    // this.getUserData();
     e.preventDefault();
   };
 
@@ -168,7 +183,6 @@ class InputStats extends React.Component {
         headers: headers,
       })
       .then((response) => {
-        console.log("axios response", response);
         if (response.data.lifetime) {
           console.log("true");
           this.setState({
@@ -198,20 +212,31 @@ class InputStats extends React.Component {
               <TitleSpan>Platform</TitleSpan>
               <div>
                 <RadioButton type="radio" value="psn" name="platform" />
-                <span>Playstation <FontAwesomeIcon icon={faPlaystation} /></span>
+                <span>
+                  Playstation <FontAwesomeIcon icon={faPlaystation} />
+                </span>
               </div>
               <div>
                 <RadioButton type="radio" value="xbl" name="platform" />
-                <span>Xbox <FontAwesomeIcon icon={faXbox} /></span>
+                <span>
+                  Xbox <FontAwesomeIcon icon={faXbox} />
+                </span>
               </div>
               <div>
                 <RadioButton type="radio" value="battle" name="platform" />
-                <span>PC <FontAwesomeIcon icon={faDesktop} /></span>
+                <span>
+                  PC <FontAwesomeIcon icon={faDesktop} />
+                </span>
               </div>
               <div>
                 <RadioButton type="radio" value="steam" name="platform" />
-                <span>Steam <FontAwesomeIcon icon={faSteam} /></span>
+                <span>
+                  Steam <FontAwesomeIcon icon={faSteam} />
+                </span>
               </div>
+              {this.state.errors.platform === true && (
+                <ErrorText>Must select a platform</ErrorText>
+              )}
             </label>
             <UserLabel>
               <TitleSpan>Username</TitleSpan>
@@ -222,6 +247,9 @@ class InputStats extends React.Component {
                 value={this.state.username}
                 onChange={this.handleChange}
               />
+              {this.state.errors.username === true && (
+                <ErrorText>Must give a username</ErrorText>
+              )}
             </UserLabel>
             <input type="submit" value="Submit" className="btn-primary" />
           </FormMain>

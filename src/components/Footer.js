@@ -33,6 +33,10 @@ const FooterMain = styled.footer`
 
 const FooterFlex = styled.div`
   display: flex;
+
+  @media (max-width: 500px) {
+      flex-wrap: wrap;
+  }
 `;
 
 const DescriptionContainer = styled.div`
@@ -40,8 +44,16 @@ const DescriptionContainer = styled.div`
   color: white;
   padding: 1rem;
 
+  @media (max-width: 500px) {
+      width: 100%;
+  }
+
   img {
     width: 50%;
+
+    @media (max-width: 500px) {
+      width: 90%;
+  }
   }
 `;
 
@@ -53,6 +65,10 @@ const LinksContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 1rem;
+
+  @media (max-width: 500px) {
+      width: 100%;
+  }
 
   a {
     color: white;

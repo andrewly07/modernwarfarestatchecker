@@ -9,6 +9,16 @@ const HeaderContainer = styled.div`
 
   h1 {
     font-size: 2rem;
+    @media (max-width: 500px) {
+      font-size: 1.2rem;
+    }
+  }
+
+  p {
+    opacity: .6;
+    @media (max-width: 768px) {
+      font-size: .75rem;
+    }
   }
 `;
 
