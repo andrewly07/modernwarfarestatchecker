@@ -5,13 +5,15 @@ import HeroLogo from "../assets/images/mw-stats-logo.png";
 import Title from "./Title";
 
 const HeroMain = styled.section`
-  height: 50vh;
-  background-image: url(${BgImage});
+  /* height: 32vh; */
+  margin-top: 7rem;
+  padding: 0 2rem;
+  /* background-image: url(${BgImage}); */
+  background: transparent;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
   background-attachment: fixed;
-  margin-top: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,19 +26,19 @@ const HeroMain = styled.section`
     background-attachment: scroll;
   }
   @media (max-width: 500px) {
-    height: 38vh;
+    margin-top: 3rem;
   }
 `;
 
 const Hero = () => {
   return (
     <HeroMain>
-      <img src={HeroLogo} alt="Call of Duty Modern Warfare and Warzone Logo" />
-      {/* <Title
+      {/* <img src={HeroLogo} alt="Call of Duty Modern Warfare and Warzone Logo" /> */}
+      <Title
         title="Call of Duty: Modern Warfare"
         subtitle="Stat Checker"
-        desc="Check wins/losses, favorite weapon, K/D ratio, and more"
-      /> */}
+        desc="Check wins/losses, K/D ratio, and random stats"
+      />
     </HeroMain>
   );
 };

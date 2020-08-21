@@ -8,6 +8,16 @@ body {
   letter-spacing: 0.15rem;
   background-color: black;
   color: white;
+  background-image: url(./assets/images/hero-gradient.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 code {

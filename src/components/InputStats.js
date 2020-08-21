@@ -4,6 +4,7 @@ import Header from "./Header";
 import axios from "axios";
 import Stats from "./Stats";
 import Error from "./Error";
+import LoadingOverlay from 'react-loading-overlay'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlaystation,
@@ -102,6 +103,10 @@ const ErrorText = styled.p`
   font-size: 0.85rem;
 `;
 
+const StyledLoader = styled(LoadingOverlay)`
+  position: initial;
+`
+
 class InputStats extends React.Component {
   state = {
     success: null,
@@ -112,6 +117,7 @@ class InputStats extends React.Component {
       platform: null,
       username: null,
     },
+    loaderState: false
   };
 
   handleChange = (e) => {
@@ -178,6 +184,11 @@ class InputStats extends React.Component {
       "x-rapidapi-key": "f20ce8e6b3mshe7fb7b3898a80a0p17c547jsncc06a03797e7",
     };
 
+    // set loader to active
+    this.setState({
+      loaderState: true
+    })
+
     await axios
       .get(url, {
         headers: headers,
@@ -188,11 +199,13 @@ class InputStats extends React.Component {
           this.setState({
             userData: response.data.lifetime,
             success: true,
+            loaderState: false
           });
           return;
         } else if (response.data.error) {
           this.setState({
             success: false,
+            loaderState: false
           });
           return;
         }
@@ -204,9 +217,13 @@ class InputStats extends React.Component {
       return (
         <StatsMain>
           <Header
-            title="Let's see what you've got, soldier."
+            title=""
             subtitle="*Multiplayer stats only, Warzone coming soon"
           />
+          <StyledLoader
+            active={this.state.loaderState} 
+            spinner
+          >
           <FormMain onSubmit={this.handleSubmit}>
             <label onChange={this.handleRadioChange}>
               <TitleSpan>Platform</TitleSpan>
@@ -253,6 +270,7 @@ class InputStats extends React.Component {
             </UserLabel>
             <input type="submit" value="Submit" className="btn-primary" />
           </FormMain>
+          </StyledLoader>
         </StatsMain>
       );
     } else if (this.state.success === true) {

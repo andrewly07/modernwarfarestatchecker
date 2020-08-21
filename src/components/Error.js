@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const ErrorMain = styled.section`
-  padding: 0rem 0 2rem;
+  padding: 4rem 0 2rem;
   width: 80vw;
   margin: 0 auto;
 

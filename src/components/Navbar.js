@@ -10,10 +10,10 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const Nav = styled.div`
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   width: 100%;
-  background: #1b1b1b;
+  background: transparent;
   z-index: 100;
   color: white;
 `;

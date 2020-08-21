@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const FooterMain = styled.footer`
-  background: black;
+  background: none;
   padding: 2rem;
   text-align: center;
   color: white;

@@ -1,14 +1,19 @@
 import React from "react";
 import Navbar from './Navbar'
 import Footer from './Footer'
+import styled from 'styled-components'
+
+const MainStyled = styled.main`
+  position: relative;
+`
 
 const Layout = ({ children }) => {
   return (
-      <main>
+      <MainStyled>
           <Navbar />
             { children }
           <Footer />
-      </main>
+      </MainStyled>
   )
 };
 

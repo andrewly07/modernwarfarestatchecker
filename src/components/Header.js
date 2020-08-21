@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const HeaderContainer = styled.div`
-  padding: 2rem 0 2rem;
+  padding: 0 0 2rem;
   width: 80vw;
   margin: 0 auto;
   text-transform: uppercase;

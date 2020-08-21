@@ -4,7 +4,7 @@ import styled from "styled-components";
 const TitleHeader = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   color: white;
   height: 100%;
@@ -13,6 +13,12 @@ const TitleHeader = styled.div`
     font-size: 3rem;
     margin: 0 auto;
     padding-bottom: 1rem;
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+    @media (max-width: 500px) {
+      font-size: 2rem;
+    }
   }
 `;
 
