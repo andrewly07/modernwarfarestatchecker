@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 export default function contact() {
     return (
         <Layout>
-            <h1>This is the contact page fool</h1>
+            <h1>Insert Contact Page Here</h1>
         </Layout>
     )
 }

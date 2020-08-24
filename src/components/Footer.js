@@ -11,7 +11,7 @@ import {
 
 const FooterMain = styled.footer`
   background: none;
-  padding: 2rem;
+  padding: 2rem 1rem;
   text-align: center;
   color: white;
   display: flex;

@@ -60,8 +60,14 @@ const NavLinks = styled.ul`
     padding: 0 1rem;
     font-weight: bold;
     text-transform: uppercase;
+    transition: all .3s ease-in-out;
     @media (max-width: 500px) {
       font-size: .5rem;
+      display: none;
+    }
+
+    :hover {
+      color: #d0a137;
     }
   }
 `;
