@@ -6,7 +6,7 @@ import Title from "./Title";
 
 const HeroMain = styled.section`
   /* height: 32vh; */
-  margin-top: 7rem;
+  margin-top: 4rem;
   padding: 0 2rem;
   /* background-image: url(${BgImage}); */
   background: transparent;
@@ -17,6 +17,10 @@ const HeroMain = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  img {
+    width: 35%;
+  }
   @media (max-width: 950px) {
     img {
       width: 75%;
@@ -27,18 +31,22 @@ const HeroMain = styled.section`
   }
   @media (max-width: 500px) {
     margin-top: 3rem;
+
+    img {
+      width: 100%;
+    }
   }
 `;
 
 const Hero = () => {
   return (
     <HeroMain>
-      {/* <img src={HeroLogo} alt="Call of Duty Modern Warfare and Warzone Logo" /> */}
-      <Title
+      <img src={HeroLogo} alt="Call of Duty Modern Warfare and Warzone Logo" />
+      {/* <Title
         title="Call of Duty: Modern Warfare"
         subtitle="Stat Checker"
         desc="Check wins/losses, K/D ratio, and random stats"
-      />
+      /> */}
     </HeroMain>
   );
 };

@@ -1,10 +1,11 @@
 import React from 'react'
 import Layout from '../components/Layout'
+import Hero from '../components/Hero'
 
 export default function contact() {
     return (
         <Layout>
-            <h1>Insert Contact Page Here</h1>
+            <Hero />
         </Layout>
     )
 }

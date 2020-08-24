@@ -124,7 +124,6 @@ const StatsThird = styled.div`
 `;
 
 const Stats = ({ userStats, username, platform }) => {
-  console.log("userstats", platform);
   if (userStats.all.properties === null) {
     return (
       <StatsErrorMain>
@@ -197,10 +196,10 @@ const Stats = ({ userStats, username, platform }) => {
       <StatsMain>
         <UsernameHeader>
           {username}
-          {platform === 'psn' && <FontAwesomeIcon icon={faPlaystation} className="fa-user-right"/>}
-          {platform === 'xbl' && <FontAwesomeIcon icon={faXbox} className="fa-user-right"/>}
-          {platform === 'battle' && <FontAwesomeIcon icon={faDesktop} className="fa-user-right"/>}
-          {platform === 'steam' && <FontAwesomeIcon icon={faSteam} className="fa-user-right"/>}
+          {platform === 'psn' && <FontAwesomeIcon icon={faPlaystation} className="fa-user-right" color="rgb(0, 112, 209)"/>}
+          {platform === 'xbl' && <FontAwesomeIcon icon={faXbox} className="fa-user-right" color="#107c10"/>}
+          {platform === 'battle' && <FontAwesomeIcon icon={faDesktop} className="fa-user-right" color="#abdaf4"/>}
+          {platform === 'steam' && <FontAwesomeIcon icon={faSteam} className="fa-user-right" color="#bebcba"/>}
         </UsernameHeader>
         <h4>Lifetime Multiplayer Stats</h4>
         <StatsFlexWrap>
@@ -256,7 +255,7 @@ const Stats = ({ userStats, username, platform }) => {
               <span>Suicides:</span> {suicides}
             </p>
             <p>
-              <span>Accuracy:</span> {accuracy.toFixed(2)}%
+              <span>Accuracy:</span> {(accuracy.toFixed(3) * 100)}%
             </p>
             <p>
               <span>Total Assists:</span> {assists}

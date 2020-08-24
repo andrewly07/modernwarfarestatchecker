@@ -153,7 +153,6 @@ class InputStats extends React.Component {
 
   handleSubmit = (e) => {
     if ((this.state.platform === "") & (this.state.username === "")) {
-      console.log("platform needs to be selected");
       this.setState({
         errors: {
           platform: true,
@@ -162,7 +161,6 @@ class InputStats extends React.Component {
       });
       e.preventDefault();
     } else if (this.state.username === "") {
-      console.log("username needs to be selected");
       this.setState({
         errors: { username: true },
       });
@@ -189,7 +187,6 @@ class InputStats extends React.Component {
         username: null,
       },
     });
-    console.log("handle clear data", this.state);
     e.preventDefault();
   };
 
@@ -214,7 +211,6 @@ class InputStats extends React.Component {
       })
       .then((response) => {
         if (response.data.lifetime) {
-          console.log("true");
           this.setState({
             userData: response.data.lifetime,
             success: true,
@@ -249,25 +245,25 @@ class InputStats extends React.Component {
               <div>
                 <RadioButton type="radio" value="psn" name="platform" />
                 <span>
-                  Playstation <FontAwesomeIcon icon={faPlaystation} />
+                  Playstation <FontAwesomeIcon icon={faPlaystation} color="rgb(0, 112, 209)"/>
                 </span>
               </div>
               <div>
                 <RadioButton type="radio" value="xbl" name="platform" />
                 <span>
-                  Xbox <FontAwesomeIcon icon={faXbox} />
+                  Xbox <FontAwesomeIcon icon={faXbox} color="#107c10" />
                 </span>
               </div>
               <div>
                 <RadioButton type="radio" value="battle" name="platform" />
                 <span>
-                  PC <FontAwesomeIcon icon={faDesktop} />
+                  PC <FontAwesomeIcon icon={faDesktop} color="#abdaf4"/>
                 </span>
               </div>
               <div>
                 <RadioButton type="radio" value="steam" name="platform" />
                 <span>
-                  Steam <FontAwesomeIcon icon={faSteam} />
+                  Steam <FontAwesomeIcon icon={faSteam} color="#bebcba" />
                 </span>
               </div>
               {this.state.errors.platform === true && (
@@ -276,7 +272,7 @@ class InputStats extends React.Component {
             </label>
             <UserLabel>
               <TitleSpan>Username</TitleSpan>
-              <span>(NOT Activision ID)</span>
+              <span style={{fontSize: ".875rem"}}>(NOT Activision ID)</span>
               <UserTextInput
                 type="text"
                 placeholder="platform username"
