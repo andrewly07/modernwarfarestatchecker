@@ -79,7 +79,8 @@ const StatsRandomMain = styled.div`
 `;
 
 const StatsThird = styled.div`
-  background: url(${(props) => props.img});
+  /* background: url(${(props) => props.img}); */
+  background: none;
   background-size: cover;
   background-position: center;
   width: 50%;
@@ -89,7 +90,11 @@ const StatsThird = styled.div`
   position: relative;
   align-items: center;
 
-  :before {
+  @media (max-width: 550px) {
+    width: 100%;
+  }
+
+  /* :before {
     content: "";
     position: absolute;
     height: 100%;
@@ -103,7 +108,7 @@ const StatsThird = styled.div`
       rgba(0, 0, 0, 1) 100%
     );
     z-index: 1;
-  }
+  } */
 
   p {
     color: #fff;
@@ -207,7 +212,7 @@ const Stats = ({ userStats, username, platform }) => {
               <span>Losses:</span> {losses}
             </p>
             <p>
-              <span>Overall K/D Ratio:</span> {kdRatio}
+              <span>Overall K/D Ratio:</span> {kdRatio.toFixed(2)}
             </p>
             <p>
               <span>Overall Kills:</span> {kills}
@@ -219,7 +224,7 @@ const Stats = ({ userStats, username, platform }) => {
               <span>Total Games Played:</span> {totalGamesPlayed}
             </p>
             <p>
-              <span>Win/Loss Ratio:</span> {winLossRatio}
+              <span>Win/Loss Ratio:</span> {winLossRatio.toFixed(2)}
             </p>
             <p>
               <span>Total Score:</span> {score}
@@ -236,7 +241,7 @@ const Stats = ({ userStats, username, platform }) => {
               <span>Current Win Streak:</span> {currentWinStreak}
             </p>
             <p>
-              <span>Total Time Played:</span> {timePlayedTotal} minutes
+              <span>Total Time Played:</span> {((timePlayedTotal / 60) / 60).toFixed(2)} hours
             </p>
             <p>
               <span>Total Shots:</span> {totalShots}
@@ -251,7 +256,7 @@ const Stats = ({ userStats, username, platform }) => {
               <span>Suicides:</span> {suicides}
             </p>
             <p>
-              <span>Accuracy:</span> {accuracy}
+              <span>Accuracy:</span> {accuracy.toFixed(2)}%
             </p>
             <p>
               <span>Total Assists:</span> {assists}
@@ -269,7 +274,7 @@ const Stats = ({ userStats, username, platform }) => {
                 <span>Highest Killstreak:</span> {bestKillStreak}
               </p>
               <p>
-                <span>Best K/D Ratio:</span> {bestKD}
+                <span>Best K/D Ratio:</span> {bestKD.toFixed(2)}
               </p>
               <p>
                 <span>Most Deaths:</span> {bestDeaths}
@@ -284,9 +289,6 @@ const Stats = ({ userStats, username, platform }) => {
             <StatsThird img={sq4}>
               <p>
                 <span>Best Score:</span> {bestScore}
-              </p>
-              <p>
-                <span>Win/Loss Ratio:</span> {winLossRatio}
               </p>
               <p>
                 <span>Most Plants:</span> {bestPlants}
