@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import styled from "styled-components";
 
@@ -23,7 +23,11 @@ const StatsMain = styled.section`
 const UsernameHeader = styled.h1`
   padding-top: 2rem;
   font-size: 2.5rem;
-`
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+  @media (max-width: 550px) {
+    font-size: 1.75rem;
+  }
+`;
 
 const StatsErrorMain = styled.section`
   padding: 4rem 0 2rem;
@@ -57,16 +61,18 @@ const StatsFlexWrap = styled.div`
   flex-wrap: wrap;
   padding: 1rem 1rem 0;
   position: relative;
+  max-width: 1170px;
+  margin: 0 auto;
 
   :after {
     content: "";
     position: relative;
-    background: #fbfcd1;
-    height: 1px;
-    width: 75%;
+    background: white;
+    height: 2px;
+    width: 10%;
     margin: 0 auto;
     margin-top: 4rem;
-    opacity: 0.4;
+    opacity: 0.5;
   }
 `;
 
@@ -80,50 +86,115 @@ const StatsRandomMain = styled.div`
 
 const StatsThird = styled.div`
   /* background: url(${(props) => props.img}); */
-  background: none;
+  /* border: 1px dotted white; */
   background-size: cover;
   background-position: center;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  position: relative;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 0 2rem;
+  border-top: none;
+  border-bottom: none;
+
+  @media (max-width: 550px) {
+    width: 100%;
+    border: none;
+    padding: 0 1.5rem;
+    padding-right: 0;
+  }
+
+  :before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    left: 0;
+    background: rgb(1, 28, 45);
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0),
+      #79d9ff7d 49%,
+      #79d9ff7d 51%,
+      rgba(0, 0, 0, 0)
+    );
+    z-index: 1;
+  }
+
+  p {
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 10;
+    font-size: .875rem;
+    font-weight: 600;
+
+    span {
+      font-weight: 400;
+      color: #abe9ff;
+    }
+  }
+`;
+
+const StatsHalf = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: left;
   position: relative;
-  align-items: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 0 2rem;
+  border-top: none;
+  border-bottom: none;
 
   @media (max-width: 550px) {
     width: 100%;
+    border: none;
+    padding: 0 1.5rem;
+    padding-right: 0;
   }
 
-  /* :before {
+  :before {
     content: "";
     position: absolute;
     height: 100%;
-    width: 100%;
-    top: 0;
+    width: 2px;
+    left: 0;
     background: rgb(1, 28, 45);
     background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(29, 12, 28, 0.9) 50%,
-      rgba(0, 0, 0, 1) 100%
+      to bottom,
+      rgba(0, 0, 0, 0),
+      #79d9ff7d 49%,
+      #79d9ff7d 51%,
+      rgba(0, 0, 0, 0)
     );
     z-index: 1;
-  } */
+  }
 
   p {
     color: #fff;
-    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
     letter-spacing: 3px;
     text-transform: uppercase;
     z-index: 10;
+    font-size: 0.875rem;
+    font-weight: 600;
 
     span {
-      font-weight: 600;
+      font-weight: 400;
+      color: #abe9ff;
     }
   }
 `;
 
 const Stats = ({ userStats, username, platform }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (userStats.all.properties === null) {
     return (
       <StatsErrorMain>
@@ -196,13 +267,53 @@ const Stats = ({ userStats, username, platform }) => {
       <StatsMain>
         <UsernameHeader>
           {username}
-          {platform === 'psn' && <FontAwesomeIcon icon={faPlaystation} className="fa-user-right" color="rgb(0, 112, 209)"/>}
-          {platform === 'xbl' && <FontAwesomeIcon icon={faXbox} className="fa-user-right" color="#107c10"/>}
-          {platform === 'battle' && <FontAwesomeIcon icon={faDesktop} className="fa-user-right" color="#abdaf4"/>}
-          {platform === 'steam' && <FontAwesomeIcon icon={faSteam} className="fa-user-right" color="#bebcba"/>}
+          {platform === "psn" && (
+            <FontAwesomeIcon
+              icon={faPlaystation}
+              className="fa-user-right"
+              color="rgb(0, 112, 209)"
+            />
+          )}
+          {platform === "xbl" && (
+            <FontAwesomeIcon
+              icon={faXbox}
+              className="fa-user-right"
+              color="#107c10"
+            />
+          )}
+          {platform === "battle" && (
+            <FontAwesomeIcon
+              icon={faDesktop}
+              className="fa-user-right"
+              color="#abdaf4"
+            />
+          )}
+          {platform === "steam" && (
+            <FontAwesomeIcon
+              icon={faSteam}
+              className="fa-user-right"
+              color="#bebcba"
+            />
+          )}
         </UsernameHeader>
         <h4>Lifetime Multiplayer Stats</h4>
         <StatsFlexWrap>
+          {/* <StatsUserHeader>
+            <Username>
+              Lifetime Played: {((timePlayedTotal / 60) / 60).toFixed(2)} hours
+            </Username>
+          </StatsUserHeader> */}
+          {/* <StatsLifetimeHeader>
+            <p>Total Time Played:
+              <span>{((timePlayedTotal / 60) / 60).toFixed(2)} hours</span>
+            </p>
+            <p>
+              Wins: 
+              <span>
+                {wins}
+              </span>
+            </p>
+          </StatsLifetimeHeader> */}
           <StatsThird img={sq1}>
             <p>
               <span>wins:</span> {wins}
@@ -220,8 +331,10 @@ const Stats = ({ userStats, username, platform }) => {
               <span>Total Deaths:</span> {deaths}
             </p>
             <p>
-              <span>Total Games Played:</span> {totalGamesPlayed}
+              <span>Games Played:</span> {totalGamesPlayed}
             </p>
+          </StatsThird>
+          <StatsThird img={sq2}>
             <p>
               <span>Win/Loss Ratio:</span> {winLossRatio.toFixed(2)}
             </p>
@@ -231,8 +344,6 @@ const Stats = ({ userStats, username, platform }) => {
             <p>
               <span>Total Ties:</span> {ties}
             </p>
-          </StatsThird>
-          <StatsThird img={sq2}>
             <p>
               <span>Longest Win Streak:</span> {recordLongestWinStreak}
             </p>
@@ -240,8 +351,11 @@ const Stats = ({ userStats, username, platform }) => {
               <span>Current Win Streak:</span> {currentWinStreak}
             </p>
             <p>
-              <span>Total Time Played:</span> {((timePlayedTotal / 60) / 60).toFixed(2)} hours
+              <span>Lifetime Played:</span>{" "}
+              {(timePlayedTotal / 60 / 60).toFixed(2)} hours
             </p>
+          </StatsThird>
+          <StatsThird>
             <p>
               <span>Total Shots:</span> {totalShots}
             </p>
@@ -255,7 +369,7 @@ const Stats = ({ userStats, username, platform }) => {
               <span>Suicides:</span> {suicides}
             </p>
             <p>
-              <span>Accuracy:</span> {(accuracy.toFixed(3) * 100)}%
+              <span>Accuracy:</span> {accuracy.toFixed(3) * 100}%
             </p>
             <p>
               <span>Total Assists:</span> {assists}
@@ -265,7 +379,7 @@ const Stats = ({ userStats, username, platform }) => {
         <StatsIndividualMain>
           <h4>Individual Game Stats</h4>
           <StatsFlexWrap>
-            <StatsThird img={sq3}>
+            <StatsHalf img={sq3}>
               <p>
                 <span>Most Kills:</span> {bestKills}
               </p>
@@ -284,8 +398,8 @@ const Stats = ({ userStats, username, platform }) => {
               <p>
                 <span>Most Defuses:</span> {bestDefuses}
               </p>
-            </StatsThird>
-            <StatsThird img={sq4}>
+            </StatsHalf>
+            <StatsHalf img={sq4}>
               <p>
                 <span>Best Score:</span> {bestScore}
               </p>
@@ -301,7 +415,7 @@ const Stats = ({ userStats, username, platform }) => {
               <p>
                 <span>Most Confirms:</span> {bestConfirmed}
               </p>
-            </StatsThird>
+            </StatsHalf>
           </StatsFlexWrap>
         </StatsIndividualMain>
         <StatsRandomMain>
@@ -329,6 +443,8 @@ const Stats = ({ userStats, username, platform }) => {
               <p>
                 <span>Longshot Kills:</span> {longshotKills}
               </p>
+            </StatsThird>
+            <StatsThird>
               <p>
                 <span>Semtex Kills:</span> {semtexKills}
               </p>
@@ -338,8 +454,6 @@ const Stats = ({ userStats, username, platform }) => {
               <p>
                 <span>Shotgun Deaths:</span> {shotgunDeaths}
               </p>
-            </StatsThird>
-            <StatsThird>
               <p>
                 <span>Frag Kills:</span> {fragKills}
               </p>
@@ -352,6 +466,8 @@ const Stats = ({ userStats, username, platform }) => {
               <p>
                 <span>Launcher Kills:</span> {launcherKills}
               </p>
+            </StatsThird>
+            <StatsThird>
               <p>
                 <span>Launcher Deaths:</span> {launcherDeaths}
               </p>

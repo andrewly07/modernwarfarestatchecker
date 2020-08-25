@@ -97,6 +97,7 @@ const UserLabel = styled.label`
     color: white;
     font-family: inherit;
     height: 3rem;
+    font-size: 16px;
   }
 `;
 
@@ -233,7 +234,7 @@ class InputStats extends React.Component {
         <StatsMain>
           <Header
             title=""
-            subtitle="*Multiplayer stats only, Warzone coming soon"
+            subtitle="*Multiplayer only, Warzone coming soon"
           />
           <StyledLoader
             active={this.state.loaderState} 
