@@ -42,11 +42,6 @@ const Hero = () => {
   return (
     <HeroMain>
       <img src={HeroLogo} alt="Call of Duty Modern Warfare and Warzone Logo" />
-      {/* <Title
-        title="Call of Duty: Modern Warfare"
-        subtitle="Stat Checker"
-        desc="Check wins/losses, K/D ratio, and random stats"
-      /> */}
     </HeroMain>
   );
 };

@@ -43,6 +43,7 @@ p {
   letter-spacing: 3px;
   position: relative;
   text-align: center;
+  -webkit-appearance: button;
   transition: all .4s ease-in-out;
 }
 

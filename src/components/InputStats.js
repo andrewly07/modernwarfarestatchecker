@@ -32,22 +32,6 @@ const FormMain = styled.form`
   flex-direction: column;
   padding: 0 1rem;
 
-  /* :before {
-    margin-bottom: 3rem;
-    content: "";
-    height: 2px;
-    width: 100%;
-    background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0),
-      #79d9ff 20%,
-      #79d9ff 80%,
-      rgba(0, 0, 0, 0)
-    );
-    display: block;
-    margin-top: 0;
-  } */
-
   div {
     margin: 0.5rem 0;
     text-align: left;

@@ -111,7 +111,7 @@ const Footer = () => {
         </DescriptionContainer>
         <LinksContainer>
           <Link to="/">Home</Link>
-          <Link to="/contact">Contact</Link>
+          {/* <Link to="/contact">Contact</Link> */}
           <SocialLinks>
             <a href="https://www.instagram.com/callofduty">
               <FontAwesomeIcon icon={faInstagram} />
