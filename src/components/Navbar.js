@@ -96,9 +96,9 @@ const Navbar = () => {
             <li>
               <Link to="/">Home</Link>
             </li>
-            {/* <li>
+            <li>
               <Link to="/contact">Contact</Link>
-            </li> */}
+            </li>
           </NavLinks>
         </NavHeader>
         <SocialLinks>

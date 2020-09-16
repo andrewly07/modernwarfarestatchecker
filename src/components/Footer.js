@@ -95,6 +95,10 @@ const CopyrightText = styled.p`
   font-size: .85rem;
   color: #c7c7c7;
   width: 80vw;
+  @media (max-width: 500px) {
+    width: 90vw;
+    font-size: .65rem;
+  }
 `;
 
 const Footer = () => {
